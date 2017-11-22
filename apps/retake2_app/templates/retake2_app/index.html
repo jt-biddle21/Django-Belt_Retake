@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Wishlist Homepage!</title>
+    </head>
+    <body>
+        {% if messages %}
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <h1>Welcome!</h1>
+        <h4>Login, or register if you haven't already!</h4>
+        <form id="regform" action="/register" method="POST">
+            {% csrf_token %}
+            <p><label for="name">Name: <input id="name" type="text" name="name"></label></p>
+            <p><label for="usename">Username: <input id="usename" type="text" name="username"></label></p>
+            <p><label for="pass">Password: <input id="pass" type="password" name="password"></label></p>
+            <p>***Password should be at least 8 characters***</p>
+            <p><label for="conf">Confirm Password: <input id="conf" type="password" name="confirmpw"></label></p>
+            <p><label for="dh">Date Hired: <input id="dh" type="date" name="datehired"></label></p>
+            <input type="submit" value="Register">
+        </form>
+        <h5>If you've already registered, log in here!</h5>
+        <form id="loginform" action='/login' method='post'>
+            {% csrf_token %}
+            <label for="logem">Username: <input id="logem" type="text" name="Logusername"></label>
+            <label for="logpass">Password: <input id="logpass" type="password" name="Logpassword"></label>
+            <input type="submit" value="Log In">
+        </form>
+    </body>
+</html>

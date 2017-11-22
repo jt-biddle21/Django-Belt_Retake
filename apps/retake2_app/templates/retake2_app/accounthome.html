@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Quotable Quotes Account</title>
+    </head>
+    <body>
+        {% if messages %}
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <a href="/logout">Log Out</a>
+        {% for x in username %}
+        <p>Welcome {{ x.name }}!</p>
+        {% endfor %}
+        <h3>Your Wishlist:</h3>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Added By</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for x in mywishes %}
+            <tr>
+                <td><a href="/item/{{x.id}}/show">{{ x.item }}</a></td>
+                <td>{{ x.users.name }}</td>
+                <td>{{ x.dateadded|date:"M d Y"}}</td>
+                <td><a href="/item/{{x.id}}/remove">Remove from my wishlist</a></td>
+            </tr>
+            {% endfor %}
+            {% for y in test %}
+            <tr>
+                <td><a href="/item/{{y.id}}/show">{{ y.item }}</a></td>
+                <td>{{ y.users.name }}</td>
+                <td>{{ y.dateadded|date:"M d Y"}}</td>
+                <td><a href="/remove/{{y.id}}/delete">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h3>Other Users Wishlist:</h3>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Added By</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for z in wishes %}
+            <tr>
+                <td><a href="/item/{{z.id}}/show">{{ z.item }}</a></td>
+                <td>{{ z.users.name }}</td>
+                <td>{{ z.dateadded|date:"M d Y"}}</td>
+                <td><a href="/wishitem/{{z.id}}/wish">Add to my wishlist</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/items/add">Add Item</a>
+    </body>
+</html>

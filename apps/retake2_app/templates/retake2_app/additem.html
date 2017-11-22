@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Items To Wishlist</title>
+    </head>
+    <body>
+    {% if messages %}
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+     <h3>Add Item to Wishlist</h3>
+        <form action="/additem/{{ request.session.user_id }}/add" method="post">
+            {% csrf_token %}
+            <label id="quouser">Item: <input type="text" name="newitem"></label>
+            <input type="submit" value="Wish!">
+        </form>
+    <a href="/loggedin">Home</a> | <a href="/logout">Log Out</a>
+    </body>
+</html>
